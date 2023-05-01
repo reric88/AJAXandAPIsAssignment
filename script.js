@@ -65,11 +65,11 @@ async function activityFunc(){
 // 3d
     try {
         
-        // 3b
+// 3b
         const activityJS3 = await axios.get('https://www.boredapi.com/api/activity/');
         // console.log(activityJS3);
         
-        // 3c
+// 3c
         p5.innerText = activityJS3.data.activity;
         p6.innerText = activityJS3.data.type;
         console.log('Q3: Success');
@@ -92,15 +92,21 @@ fourth.append(p7);
 
 async function tvMazeFunc(){
     try {
-        let theShow = await axios.get('https://api.tvmaze.com/shows/38963');
-        // console.log(theShow);
-        let theEpisode = await axios.get('https://api.tvmaze.com/shows/38963/episodebynumber?season=2&number=8')
-        // console.log(theEpisode);
-        theShow = theShow.data.name;
-        let theSeason = theEpisode.data.season;
-        let theName = theEpisode.data.name;
-        theEpisode = theEpisode.data.number;
-        p7.innerText += `${theShow}\nSeason: ${theSeason}, Episode: ${theEpisode}\n${theName}`;
+        // let theShow = await axios.get('https://api.tvmaze.com/shows/38963');
+        // // console.log(theShow);
+        // let theEpisode = await axios.get('https://api.tvmaze.com/shows/38963/episodebynumber?season=2&number=8')
+        // // console.log(theEpisode);
+        // theShow = theShow.data.name;
+        // let theSeason = theEpisode.data.season;
+        // let theName = theEpisode.data.name;
+        // theEpisode = theEpisode.data.number;
+        // p7.innerText += `${theShow}\nSeason: ${theSeason}, Episode: ${theEpisode}\n${theName}`;
+        let theShow = await axios.get('https://api.tvmaze.com/singlesearch/shows?q=Mandalorian&embed=episodes')
+        console.log(theShow);
+        theEpisode = theShow.data._embedded.episodes;
+        console.log(theEpisode[15].name);
+        // data._embedded.episodes
+        p7.innerText = theEpisode[15].name;
         console.log('Q4: Success');
     } catch (err) {
         console.log(err);
@@ -129,5 +135,4 @@ async function pikaPic(){
 }
 
 pikaPic();
-
 
